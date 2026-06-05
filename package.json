@@ -1,0 +1,51 @@
+{
+  "name": "vulnradar",
+  "displayName": "VulnRadar — Vulnerability Scanner",
+  "description": "Real-time vulnerability detection for Python packages as you type. Alerts on CVEs via OSV.dev API.",
+  "version": "1.0.0",
+  "publisher": "vulnradar",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Linters", "Other"],
+  "icon": "media/icon.png",
+  "activationEvents": [
+    "onLanguage:python",
+    "onLanguage:pip-requirements"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vulnradar.scanFile",
+        "title": "VulnRadar: Scan Current File"
+      },
+      {
+        "command": "vulnradar.openDashboard",
+        "title": "VulnRadar: Open Dashboard"
+      }
+    ],
+    "configuration": {
+      "title": "VulnRadar",
+      "properties": {
+        "vulnradar.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time vulnerability scanning"
+        },
+        "vulnradar.debounceMs": {
+          "type": "number",
+          "default": 1000,
+          "description": "Delay (ms) after typing before scanning"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "install-deps": "npm install"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0"
+  }
+}
