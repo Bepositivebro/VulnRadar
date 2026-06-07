@@ -1,172 +1,51 @@
-# 🔐 VulnRadar — VS Code Extension
+# 🔐 VulnRadar — Python Dependency Vulnerability Scanner
 
-Real-time vulnerability scanner that detects CVEs **as you type** in VS Code.
-Works on `requirements.txt` files AND `.py` files with `import` statements.
+VulnRadar is a Visual Studio Code extension that helps developers identify vulnerable Python dependencies directly inside VS Code.
 
----
+The extension analyzes:
 
-## 📁 Folder Structure
+* `requirements.txt`
+* Python import statements (`import` and `from ... import`)
 
-```
-vulnradar-vscode/
-├── src/
-│   └── extension.js     ← All extension logic
-├── package.json          ← Extension manifest
-└── README.md
-```
+and checks packages against the Open Source Vulnerabilities (OSV) database to identify known security issues.
 
----
+## Features
 
-## 🚀 How to Install & Run (Step by Step)
+✅ Real-time dependency scanning
 
-### Prerequisites
-- **VS Code** installed
-- **Node.js** v16+ installed → https://nodejs.org
+✅ requirements.txt analysis
 
----
+✅ Python import detection
 
-### Step 1 — Install VS Code Extension Tools
+✅ Vulnerability alerts inside VS Code
 
-Open terminal and run:
-```bash
-npm install -g @vscode/vsce
-```
+✅ Security dashboard
 
----
+✅ OSV vulnerability intelligence
 
-### Step 2 — Open Project in VS Code
+## Supported Technologies
 
-```bash
-cd vulnradar-vscode
-code .
-```
+Currently supported:
 
----
+* Python
+* requirements.txt
 
-### Step 3 — Run the Extension (Dev Mode)
+## Planned Support
 
-Press **`F5`** in VS Code.
+Future releases will add support for:
 
-This opens a new VS Code window called **"Extension Development Host"**.
+* Node.js (`package.json`)
+* Java (`pom.xml`)
+* Maven & Gradle
+* Go (`go.mod`)
+* Rust (`Cargo.toml`)
+* Repository-wide dependency scanning
 
-That new window IS your extension running live.
+## Commands
 
----
+* VulnRadar: Scan Current File
+* VulnRadar: Open Dashboard
 
-### Step 4 — Test It
+## GitHub Repository
 
-In the **Extension Development Host** window:
-
-**Test with requirements.txt:**
-1. Create a new file → `test_requirements.txt`
-2. Type:
-   ```
-   django==1.2
-   requests==2.0.0
-   flask==0.10.0
-   ```
-3. Wait ~1 second...
-4. You will see:
-   - 🔴 Red squiggles under vulnerable packages
-   - ⚠️ Alert popup in bottom-right corner
-   - Status bar shows `VulnRadar: 3 vulnerable (2 critical)`
-5. Click **"Open Dashboard"** in the popup → Dashboard opens on the right side
-
-**Test with Python file:**
-1. Create a new file → `test_app.py`
-2. Type:
-   ```python
-   import django
-   import flask
-   import requests
-   ```
-3. Wait ~1 second → same alerts appear
-
----
-
-## ✨ Features
-
-| Feature | How It Works |
-|---|---|
-| **Real-time scanning** | Scans 1 second after you stop typing |
-| **Red squiggles** | Shows on the vulnerable package name |
-| **Alert popup** | Bottom-right notification with risk level |
-| **Click → Dashboard** | Sidebar panel opens with full CVE analysis |
-| **requirements.txt** | Detects `package==version` patterns |
-| **Python imports** | Detects `import X` / `from X import Y` |
-| **Status bar** | Shows scan status at all times |
-| **OSV API** | Live CVE data from osv.dev |
-
----
-
-## 🎯 How to Trigger Alerts
-
-These patterns are detected:
-
-**In requirements.txt / .txt files:**
-```
-django==1.2          ← CRITICAL
-flask>=0.10.0        ← HIGH  
-requests==2.31.0     ← SAFE (no alert)
-pyyaml==3.11         ← HIGH
-cryptography==0.1    ← CRITICAL
-```
-
-**In .py files:**
-```python
-import django        ← scans latest django (no version = checks for any vulns)
-from flask import Flask
-import yaml          ← maps to PyYAML package
-import PIL           ← maps to Pillow package
-```
-
----
-
-## ⚙️ Settings
-
-Open VS Code Settings (`Ctrl+,`) and search for `vulnradar`:
-
-| Setting | Default | Description |
-|---|---|---|
-| `vulnradar.enabled` | `true` | Turn scanning on/off |
-| `vulnradar.debounceMs` | `1000` | Delay before scanning (ms) |
-
----
-
-## 🔧 Commands
-
-Open Command Palette (`Ctrl+Shift+P`) and type:
-
-| Command | Action |
-|---|---|
-| `VulnRadar: Scan Current File` | Force scan now |
-| `VulnRadar: Open Dashboard` | Open dashboard with last results |
-
----
-
-## 🐛 Troubleshooting
-
-**Extension not activating?**
-- Make sure file is `.py` or `.txt`
-- Check VS Code Output panel → select "VulnRadar" from dropdown
-
-**No alerts showing?**
-- Check internet connection (needs OSV API)
-- Try `Ctrl+Shift+P` → "VulnRadar: Scan Current File"
-
-**F5 not working?**
-- Make sure you opened the `vulnradar-vscode/` folder directly in VS Code
-- Check there are no errors in the Debug Console
-
----
-
-## 📦 Package as .vsix (Optional)
-
-To install permanently:
-```bash
-npm install -g @vscode/vsce
-cd vulnradar-vscode
-vsce package
-# Creates vulnradar-1.0.0.vsix
-code --install-extension vulnradar-1.0.0.vsix
-```
+https://github.com/Bepositivebro/VulnRadar

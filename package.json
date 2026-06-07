@@ -1,11 +1,21 @@
 {
   "name": "vulnradar",
-  "displayName": "VulnRadar — Vulnerability Scanner",
-  "description": "Real-time vulnerability detection for Python packages as you type. Alerts on CVEs via OSV.dev API.",
-  "version": "1.0.0",
-  "publisher": "vulnradar",
-  "engines": { "vscode": "^1.75.0" },
-  "categories": ["Linters", "Other"],
+  "displayName": "VulnRadar",
+  "description": "Real-time vulnerability scanner for VS Code",
+  "version": "1.0.1",
+  "publisher": "Codingwell07",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bepositivebro/VulnRadar.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
   "icon": "media/icon.png",
   "activationEvents": [
     "onLanguage:python",
